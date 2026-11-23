@@ -1,13 +1,22 @@
 ﻿// Include the namespaces (code libraries) you need below.
 using System;
+using System.Diagnostics;
 using System.Numerics;
 
 // The namespace your code is in.
 namespace MohawkGame2D
 {
-    /// <summary>
-    ///     Your game code goes inside this class!
-    /// </summary>
+
+    // TODO:
+    // Make area walls
+
+    // Make player with controls
+    
+    // Make objects to stop player
+    
+    // Make end area
+
+
     public class Game
     {
         /// <summary>
