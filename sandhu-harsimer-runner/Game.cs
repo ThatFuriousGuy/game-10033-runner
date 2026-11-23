@@ -1,7 +1,9 @@
 ﻿// Include the namespaces (code libraries) you need below.
+using sandhu_harsimer_runner.Objects;
 using System;
 using System.Diagnostics;
 using System.Numerics;
+using System.Runtime.CompilerServices;
 
 // The namespace your code is in.
 namespace MohawkGame2D
@@ -10,7 +12,7 @@ namespace MohawkGame2D
     // TODO:
     // Make area walls
 
-    // Make player with controls
+    // Make player with controls -- DONE --
     
     // Make objects to stop player
     
@@ -19,20 +21,20 @@ namespace MohawkGame2D
 
     public class Game
     {
-        /// <summary>
-        ///     Setup runs once before the game loop begins.
-        /// </summary>
+        Player player = new Player();
         public void Setup()
         {
-
+            Window.SetSize(800, 600);
+            Window.SetTitle("Runner");
+            // Calling setup so the player will be visible and run its own logic
+            player.Setup();
         }
 
-        /// <summary>
-        ///     Update runs every frame.
-        /// </summary>
         public void Update()
         {
-
+            Window.ClearBackground(Color.Black);
+            player.Update();
+            
         }
     }
 
