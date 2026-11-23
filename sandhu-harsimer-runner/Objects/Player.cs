@@ -72,6 +72,19 @@ namespace sandhu_harsimer_runner.Objects
                 position.Y = 0f;
             }
         }
+        public Vector2 get_size()
+        {
+            return size;
+        }
+        public Vector2 get_position()
+        {
+            return position;
+        }
+
+        public void respawn(Vector2 spawn_point)
+        {
+            position = spawn_point;
+        }
 
     }
 
