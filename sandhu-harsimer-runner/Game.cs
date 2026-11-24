@@ -19,7 +19,7 @@ namespace MohawkGame2D
     
     // Make objects to stop player
     
-    // Make end area
+    // Make end area -- DONE --
 
 
     public class Game
