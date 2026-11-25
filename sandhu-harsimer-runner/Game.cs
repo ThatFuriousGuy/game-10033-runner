@@ -17,7 +17,7 @@ namespace MohawkGame2D
 
     // Make player with controls -- DONE --
     
-    // Make objects to stop player
+    // Make objects to stop player -- DONE --
     
     // Make end area -- DONE --
 
@@ -25,6 +25,35 @@ namespace MohawkGame2D
     public class Game
     {
         bool game_won = false;
+        // A global speed for all the spikes
+        float spike_speed = 120f;
+        Spike[] spikes =
+        {
+            // Top left room
+            new Spike(12, new Vector2[] { new(40, 40), new(40, 210), new(130, 210), new(130, 40) }, 0),
+            new Spike(12, new Vector2[] { new(40, 40), new(40, 210), new(130, 210), new(130, 40) }, 2),
+
+            // 1st vertical room
+            new Spike(12, new Vector2[] { new(192, 110), new(192, 310) }, 0),
+            new Spike(12, new Vector2[] { new(257, 110), new(257, 310) }, 1),
+
+            // 2nd vertical room
+            new Spike(12, new Vector2[] { new(315, 220), new(315, 480) }, 0),
+            new Spike(12, new Vector2[] { new(345, 220), new(345, 480) }, 1),
+
+            // Bottom room
+            new Spike(12, 230, 425, 55, 0),
+            new Spike(12, 230, 425, 55, MathF.PI),
+
+            // Top right area
+            new Spike(12, new Vector2[] { new(315, 40), new(315, 110) }, 1),
+            new Spike(12, new Vector2[] { new(380, 40), new(380, 110) }, 0),
+            new Spike(12, new Vector2[] { new(435, 40), new(435, 130) }, 1),
+            new Spike(12, new Vector2[] { new(485, 40), new(485, 130) }, 0),
+
+            // Next to goal
+            new Spike(15, new Vector2[] { new(525, 200), new(400, 200) }, 0),
+        };
 
         // The 3 checkpoints
         CheckPoint[] checkpoints = {new CheckPoint(), new CheckPoint(), new CheckPoint()};
@@ -86,6 +115,7 @@ namespace MohawkGame2D
             after_win();
             goal.Update();
             player.Update(walls);
+            handle_spikes();
         }
 
         void Handle_Points()
@@ -101,6 +131,18 @@ namespace MohawkGame2D
                 }
 
                 checkpoints[i].Update(i == current_checkpoint);
+            }
+        }
+        void handle_spikes()
+        {
+            for (int i = 0; i < spikes.Length; i++)
+            {
+                spikes[i].Update(spike_speed);
+
+                if (spikes[i].is_touching(player.get_position(), player.get_size()))
+                {
+                    respawn_player();
+                }
             }
         }
 
